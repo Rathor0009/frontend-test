@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="col-md-5 col-sm-12">
+        <form class="form" [formGroup]="productForm">
+            <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" formControlName="productName" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && fc['productName'].errors }" />
+                <div *ngIf="submitted && fc['productName'].errors" class="invalid-feedback">
+                    <div *ngIf="fc['productName'].errors['required']">Product Name is required</div>
+                    <div *ngIf="fc['productName'].errors['minlength']">Product Name must be at least 5 characters</div>
+                    <div *ngIf="fc['productName'].errors['maxlength']">Product Name can not be more than 20 characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" formControlName="price" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && fc['price'].errors }" />
+                <div *ngIf="submitted && fc['price'].errors" class="invalid-feedback">
+                    <div *ngIf="fc['price'].errors['required']">Price is required</div>
+                    <div *ngIf="fc['price'].errors['min']">Price must be at least 5</div>
+                    <div *ngIf="fc['price'].errors['max']">Price can not be more than 20
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="text-center">
+                    <button id="save-button" (click)="onSubmit()" type="submit"
+                        class="btn btn-primary">Submit</button>&nbsp;
+                    <button id="reset-button" class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
